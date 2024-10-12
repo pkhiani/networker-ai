@@ -2,6 +2,10 @@
 
 A Chrome extension that utilizes OpenAI's GPT model to generate personalized LinkedIn messages for coffee chat requests based on the profile details of the user you are viewing.
 
+<p align="center" width="100%">
+    <img width="33%" src="https://github.com/pkhiani/linkedin-message-tailor/blob/main/icon.png?raw=true"> 
+</p>
+
 ## Features
 
 - Extracts the name, role, and company from LinkedIn profiles.
