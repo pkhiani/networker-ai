@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "LinkedIn Coffee Chat Message Tailor",
+    "version": "1.0",
+    "description": "A Chrome extension that uses OpenAI to tailor LinkedIn messages based on the current profile.",
+    "permissions": ["activeTab", "storage", "scripting", "https://api.openai.com/"],
+    "host_permissions": ["https://www.linkedin.com/*"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+      }
+    },
+    "background": {
+      "service_worker": "background.js"
+    }
+  }
+  
