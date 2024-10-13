@@ -35,6 +35,10 @@ document.getElementById('generateMessage').addEventListener('click', async funct
           const data = await response.json();
           loadingMessage.style.display = 'none';
           generatedMessage.value = data;
+
+          // Enable copy to clipboard functionality
+          document.getElementById('copyIcon').style.display = 'block';  // Show the copy icon
+
         } catch (error) {
           loadingMessage.style.display = 'none';
           generatedMessage.value = `Error: ${error.message}`;
@@ -43,3 +47,19 @@ document.getElementById('generateMessage').addEventListener('click', async funct
     });
   });
 });
+
+// // Add the copy to clipboard functionality
+// document.getElementById('copyIcon').addEventListener('click', function() {
+//   const message = document.getElementById('generatedMessage').value;
+//   if (message) {
+//       navigator.clipboard.writeText(message)
+//           .then(() => {
+//               alert('Message copied to clipboard!');
+//           })
+//           .catch(err => {
+//               console.error('Failed to copy: ', err);
+//           });
+//   } else {
+//       alert('No message to copy!');
+//   }
+// });

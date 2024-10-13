@@ -1,16 +1,22 @@
 <html>
-  <head>
-    <title>LinkedIn Coffee Chat Tailor</title>
+<head>
+    <title>LinkedIn Message Tailor</title>
     <link rel="stylesheet" type="text/css" href="popup.css">
-  </head>
-  <body>
+</head>
+<body>
     <h3>Generate Coffee Chat Message</h3>
     <p>Click the button below to generate a personalized message.</p>
     <button id="generateMessage">Generate Message</button>
     
     <textarea id="generatedMessage" readonly></textarea>
+    <div id="copyIcon" title="Copy to Clipboard" style="cursor: pointer; margin-top: 10px;">
+        <!-- SVG for Copy Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#0b7a75" viewBox="0 0 24 24" class="copy-icon">
+            <path d="M16 2c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h8zm0 2H8v16h8V4zM6 0c1.1 0 2 .9 2 2v16c0 1.1-.9 2-2 2H2c-1.1 0-2-.9-2-2V2c0-1.1.9-2 2-2h4zm0 2H2v16h4V2z"/>
+        </svg>
+    </div>
     <div id="loadingMessage" class="loading" style="display: none;">Generating...</div>
 
     <script src="popup.js"></script>
-  </body>
+</body>
 </html>
