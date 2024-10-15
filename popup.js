@@ -44,10 +44,32 @@ document.getElementById('generateMessage').addEventListener('click', async funct
                     const experienceDetails = profileDetails.experience;
 
                     // Initialize the prompt, including the user's one-liner
-                    let prompt = `Generate a professional and friendly LinkedIn message under 200 characters requesting a brief chat using only their first name. 
-                    Summarize their career and experiences holistically, focusing on their overall growth, skills, and industry focus. 
-                    Mention my background as "${userOneliner}", personalize the message as much as possible, and make it not sound AI generated.
-                    Always include thanks, and craft the message based on the following summarized view of their experiences:\n\n`;
+                    let prompt = `Create a concise, professional, and friendly LinkedIn message for initiating a brief chat, limited to 200 characters. Personalize the message using the recipient's first name and summarize their career experiences holistically, focusing on their growth, skills, and industry focus. Mention your own background as "${userOneliner}" in a manner that complements the recipient's profile. Ensure the message sounds natural and human-crafted, ending with a note of thanks.\n\n
+
+                                    # Steps
+
+                                    1. **Personalize the Greeting**: Use the recipient's first name.
+                                    2. **Summarize Experiences**: Briefly describe their career growth, skills, and industry focus.
+                                    3. **Include Your Background**: Relate to the recipient background using your own "${userOneliner}".
+                                    4. **Close with Appreciation**: Thank the recipient for their time.\n\n
+
+                                    # Output Format
+
+                                    A short, human-sounding LinkedIn message not exceeding 200 characters.\n\n
+
+                                    # Example
+
+                                    - **Input**: User Oneliner: "a seasoned marketing professional"
+                                    - **Receiver's Background**: Software engineering, tech lead, product development
+                                    
+                                    - **Output**: "Hey [First Name], impressed by your growth in tech leadership! As a seasoned marketing pro, I'd love a brief chat. Thanks!"\n\n
+
+                                    # Notes
+
+                                    - Maintain friendliness and professionalism.
+                                    - Personalize using specific details from the provided background.
+                                    - Generate a unique message each time.
+                                    - Ensure the entire message is natural and does not sound AI generated.\n\n`;
 
                     if (experienceDetails.length > 0) {
                         // Construct the prompt using experience details
