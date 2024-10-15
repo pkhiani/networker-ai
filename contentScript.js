@@ -3,10 +3,15 @@
 // Function to extract LinkedIn Experience details
 function getLinkedInExperience() {
   const experiences = [];
+
+  let experienceSection = document.querySelector("#profile-content > div > div.scaffold-layout.scaffold-layout--breakpoint-md.scaffold-layout--main-aside.scaffold-layout--reflow.pv-profile.pvs-loader-wrapper__shimmer--animate > div > div > main")
   
   // Select the experience section by looking for the appropriate class
-  const experienceSection = Array.from(document.querySelectorAll("section"))
-  .find(section => section.innerText.includes("Experience")); // Find the section containing the word "Experience"
+  //   const experienceSection = Array.from(document.querySelectorAll("section"))
+  //   .find(section => section.innerText.includes("Experience")); // Find the section containing the word "Experience"
+
+    experienceSection = Array.from(document.querySelectorAll("div"))
+        .find(section => section.innerText.toLowerCase().includes("experience"));
 
   // Check if the experience section exists
   if (!experienceSection) {
@@ -22,6 +27,7 @@ function getLinkedInExperience() {
   const nameElement = document.querySelector('a[id^="ember"] h1.text-heading-xlarge'); // Select the <h1> within the <a>
 
   experienceItems.forEach((item, index) => {
+      if (index >= 10) return; // Stop after 10 items
       // Extract name
       const titleElement = item.querySelector('.display-flex.align-items-center .t-bold span[aria-hidden="true"]'); // Select job title
       const companyElement = item.querySelector('span.t-normal'); // Select company name with job type
