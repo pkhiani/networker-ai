@@ -9,6 +9,15 @@ document.getElementById('saveOneliner').addEventListener('click', function() {
     });
 });
 
+// Load the saved one-liner when the popup is opened
+document.addEventListener('DOMContentLoaded', function() {
+    chrome.storage.sync.get(['userOneliner'], function(result) {
+        if (result.userOneliner) {
+            document.getElementById('userOneliner').value = result.userOneliner;
+        }
+    });
+});
+
 // Generate the LinkedIn message using the user's one-liner and the profile details
 document.getElementById('generateMessage').addEventListener('click', async function() {
     const loadingMessage = document.getElementById('loadingMessage');
