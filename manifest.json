@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Tailor LinkedIn Coffee Chat Messages",
+  "name": "Networker.ai: Generate personalized LinkedIn messages",
   "version": "1.0",
   "description": "Generate personalized LinkedIn messages.",
   "permissions": ["storage", "activeTab", "scripting"],
