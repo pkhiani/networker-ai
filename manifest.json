@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Networker.ai",
-  "version": "1.01",
+  "version": "1.02",
   "description": "Generate personalized LinkedIn messages.",
   "permissions": ["storage", "activeTab", "scripting"],
   "host_permissions": ["https://www.linkedin.com/*"],
