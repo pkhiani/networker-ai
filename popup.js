@@ -31,7 +31,14 @@ document.getElementById('generateMessage').addEventListener('click', async funct
 
     // Retrieve the saved one-liner and generate the prompt
     chrome.storage.sync.get(['userOneliner'], function(result) {
-        const userOneliner = result.userOneliner || 'No one-liner provided';
+        const userOneliner = result.userOneliner;
+
+        // Check if the one-liner is empty
+        if (!userOneliner) {
+            loadingMessage.style.display = 'none';
+            generatedMessage.value = "Please add a one-liner"; // Display message if no one-liner is provided
+            return; // Exit the function early
+        }
 
         // Get the current tab and send a message to the content script
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
