@@ -52,10 +52,23 @@ function getLinkedInExperience() {
   return experiences; // Return the array of experience details
 }
 
+// Define the function to retrieve profile data
+function getProfileData() {
+    chrome.storage.local.get('profileData', (result) => {
+        const savedData = result.profileData || {}; // Default to empty object if not found
+        console.log('Retrieved Profile Data:', savedData); // Log to verify retrieval
+        return savedData;
+    });
+}
+
 // Listen for messages from popup.js
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === 'getProfileDetails') {
+  if (request.action === 'getProfileDetails' && request.profileAction === 'getProfileData') {
       const experienceDetails = getLinkedInExperience();
-      sendResponse({ experience: experienceDetails });
+      const profileDetails = getProfileData();
+      sendResponse({
+        profile: profileDetails,
+        experience: experienceDetails
+    });
   }
 });
