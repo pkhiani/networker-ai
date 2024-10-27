@@ -82,16 +82,23 @@ document.getElementById('generateMessage').addEventListener('click', async funct
                     action: 'getProfileDetails',
                     profileAction: 'getProfileData'
                 }, async (response) => {
-                    // Extracted experience details
-                    const experienceDetails = response.experience;
-                    const profileDetails = response.profile;
-
-                    if (profileDetails && experienceDetails) {
-                        console.log('Received Experience Details:', experienceDetails);
-                        console.log('Received Profile Details:', profileDetails); // Handle the new parameter
-                    } else {
-                        console.error('No profile details returned.');
+                    // Check if response is defined and has properties
+                    if (chrome.runtime.lastError) {
+                        console.error('Error sending message:', chrome.runtime.lastError);
+                        return; // Exit if there's an error
                     }
+        
+                    const experienceDetails = response?.experience || []; // Default to empty array if not found
+                    const profileDetails = response?.profile || {}; // Default to empty object if not found
+
+                    console.log('Received Experience Details:', experienceDetails);
+                    console.log('Received Profile Details:', profileDetails);
+        
+                    // if (profileDetails && experienceDetails) {
+                    //     
+                    // } else {
+                    //     console.error('No profile details returned or data is missing.');
+                    // }
 
                     // Initialize the prompt, including the user's one-liner
                     let prompt = `Create a concise, professional, and friendly LinkedIn message for initiating a brief chat, limited to 200 characters. Personalize the message using the recipient's first name, and prioritize their most recent role at the company. If the recipient is a recruiter, ask engaging questions about their experience at the company, such as what makes an ideal candidate, what it takes to be part of the company, or what the company culture is like. If the recipient is not a recruiter, focus entirely on acknowledging their career growth, skills, and achievements, without asking any questions. Mention your own background as "${userPurpose}" in a way that naturally complements their profile. Ensure the message sounds human-crafted and unique, ending with a note of thanks.
