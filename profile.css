@@ -26,12 +26,6 @@ body, html {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Softer shadow for depth */
 }
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #047fc2; /* Main accent color */
-}
-
 /* Form styling */
 #profileForm {
     display: flex;
@@ -94,3 +88,26 @@ button:hover {
         font-size: 14px;
     }
 }
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #047fc2; /* Main accent color */
+}
+
+#loginButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#loginButton img {
+    width: 100%;
+    height: 24px;
+}
+
