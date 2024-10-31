@@ -4,10 +4,6 @@
   "version": "2.0",
   "description": "Generate personalized LinkedIn messages.",
   "permissions": ["storage", "activeTab", "scripting", "identity"],
-  "oauth2": {
-    "client_id": "78nj2vdfpzgwi8",
-    "scopes": ["r_basicprofile"]
-  },
   "host_permissions": ["https://www.linkedin.com/*"],
   "action": {
     "default_popup": "popup.html",
