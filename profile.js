@@ -69,7 +69,7 @@ function loginWithLinkedIn() {
 
 async function exchangeAuthorizationCodeForAccessToken(authorizationCode) {
     const clientId = '78nj2vdfpzgwi8'; // Replace with your LinkedIn Client ID
-    const clientSecret = 'WPL_AP1.pYrYxvhCDDLiyhAo.Xgne2Q=='; // Replace with your LinkedIn Client Secret
+    const clientSecret = ''; // Replace with your LinkedIn Client Secret
     const redirectUri = 'https://pcoeackmidgmiogcbhocddhfbjalhdik.chromiumapp.org/linkedin_callback'; 
 
     try {
