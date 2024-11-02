@@ -18,6 +18,12 @@ body {
   margin-left: auto;
 }
 
+.logo-icon {
+  content:url(icon-transparent.png);
+  width: 30px;
+  height: 30px;
+}
+
 h3 {
   color: #047fc2;
   font-size: 16px;

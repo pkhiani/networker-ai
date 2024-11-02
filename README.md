@@ -22,3 +22,4 @@ Enable Developer Mode:
 
 Load the unpacked extension:
 - Click the "Load unpacked" button and select the directory containing the extension files.
+  
