@@ -24,7 +24,7 @@ function getLinkedInExperience() {
 
   console.log(`Found ${experienceItems.length} experience items.`); // Log the number of experience items
 
-  const nameElement = document.querySelector('a[id^="ember"] h1.text-heading-xlarge'); // Select the <h1> within the <a>
+  const nameElement = document.querySelector("#ember1155 > h1"); // Select the <h1> within the <a>
 
   experienceItems.forEach((item, index) => {
       if (index >= 10) return; // Stop after 10 items
