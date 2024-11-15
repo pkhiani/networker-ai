@@ -93,33 +93,15 @@ document.getElementById('generateMessage').addEventListener('click', async funct
 
                     console.log('Received Experience Details:', experienceDetails);
                     console.log('Received Profile Details:', profileDetails);
-                    
-                    let purposeText = ''; // Text to describe the user's purpose
-                    switch (userPurpose) {
-                        case 'careerAdvice':
-                            purposeText = "Seeking Career Advice";
-                            break;
-                        case 'networking':
-                            purposeText = "Networking Opportunity";
-                            break;
-                        case 'jobInquiry':
-                            purposeText = "Inquiring About Job Openings";
-                            break;
-                        case 'projectCollaboration':
-                            purposeText = "Project Collaboration";
-                            break;
-                        default:
-                            purposeText = "Other";
-                    }
-                    
+                                    
                     // Initialize the prompt, including the user's one-liner
-                    let prompt = `Create a concise, professional, and friendly LinkedIn message for initiating a brief chat, limited to 200 characters. Personalize the message using the recipient's first name, and prioritize their most recent role at the company. If the recipient is a recruiter, ask engaging questions about their experience at the company, such as what makes an ideal candidate, what it takes to be part of the company, or what the company culture is like. If the recipient is not a recruiter, focus entirely on acknowledging their career growth, skills, and achievements, without asking any questions. Mention your own background as "${userPurpose}" in a way that naturally complements their profile. Ensure the message sounds human-crafted and unique, ending with a note of thanks.
+                    let prompt = `Create a concise, professional, and friendly LinkedIn message for initiating a brief chat, limited to 200 characters. Personalize the message using the recipient's first name, and prioritize their most recent role at the company. If the recipient is a recruiter, ask engaging questions about their experience at the company, such as what makes an ideal candidate, what it takes to be part of the company, or what the company culture is like. If the recipient is not a recruiter, focus entirely on acknowledging their career growth, skills, and achievements. Mention your own background in a way that naturally complements their profile. Ensure the message sounds human-crafted and unique, ending with a note of thanks.
 
                                     ### Guidelines:
                                     1. **Personalized Greeting**: Start with the recipient’s first name.
                                     2. **For Recruiters**: Ask thoughtful questions about the company, culture, or qualities they look for in candidates. Do not reference any previous recruiting roles.
-                                    3. **For Non-Recruiters**: Reference specific aspects of their career growth, skills, and achievements, without asking questions.
-                                    4. **Relate to Your Background**: Connect your intention for reaching out (${purposeText}) to their role or industry using your own details such as your **skills** (${profileDetails.skills}), **work experience** (${profileDetails.workExperience}), **education** (${profileDetails.education}), and **notable projects/achievements** (${profileDetails.projectsAchievements}).
+                                    3. **For Non-Recruiters**: Reference specific aspects of their career growth, skills, and achievements.
+                                    4. **Relate to Your Background**: Connect your intention for reaching out (${userPurpose}) to their work experience, projcts / startups they are working on, role or industry using your own details such as your **skills** (${profileDetails.skills}), **work experience** (${profileDetails.workExperience}), **education** (${profileDetails.education}), and **notable projects/achievements** (${profileDetails.projectsAchievements}).
                                     5. **Error Handling**: If a detail from the user’s profile is minimal or missing, ensure the message remains relevant and personable without forced references.
                                     6. **Distinct Structure and Tone**: Each output should feature unique phrasing and sentence structure to avoid repetition, with a warm, professional, and conversational tone that reflects genuine interest.
                                     7. **Message Length and Structure**: Keep the message clear, with a single idea per sentence, and avoid generic phrases. Messages should feel as though they were individually typed.
@@ -127,7 +109,7 @@ document.getElementById('generateMessage').addEventListener('click', async funct
 
                                     ### Notes:
                                     - For recruiters, reference only their most current role and ask thoughtful questions about the company or qualities they look for in candidates. Give only one output.
-                                    - For non-recruiters, **no questions should be asked**. Instead, reference entirely on their career growth, skills, and achievements.
+                                    - For non-recruiters, Reference entirely on their career growth, skills, and achievements.
                                     - Ensure the message is conversational, friendly, and feels personalized to the recipient’s background.
                                     - Vary the tone and structure to avoid repetition.
                                     - For ambiguous purposes, select the tone that feels most relevant to the recipient’s background.
@@ -137,54 +119,63 @@ document.getElementById('generateMessage').addEventListener('click', async funct
 
                                     ### Example Messages for Recruiters (Engaging Questions):
                                     1. "Hey [First Name], your work at [company] in [industry] is impressive! I'd love to know what makes an ideal candidate there. I’m a ${profileDetails.workExperience}, and would love to chat. Thanks!"
-                                    
                                     2. "Hi [First Name], I’ve always admired [company]. Could you share what it takes to be part of the team there? As a ${profileDetails.workExperience}, I'd love to connect and learn more. Appreciate your time!"
-
                                     3. "Hey [First Name], I noticed you're at [company]—what's the company culture like? As a ${profileDetails.workExperience}, I’m really interested in learning more. Thanks for considering a chat!"
-
                                     4. "Hello [First Name], working at [company] must be exciting! What qualities do you look for in candidates? I’m a ${profileDetails.workExperience} and would love to connect for a brief chat. Thanks!"
-
                                     5. "Hey [First Name], I noticed you're at [company]—what’s the company culture like? I’m a ${profileDetails.workExperience} and would love to connect and learn more. Thanks for considering a chat!"
-
                                     6. "Hi [First Name], your role at [company] sounds exciting! What makes an ideal candidate for your team? As a ${profileDetails.workExperience}, I’d love to hear more and connect. Appreciate your time!"
 
-                                    ### Example Messages for Non-Recruiters (No Questions, Specific Career Growth, Skills, and Achievements Focus):
+                                    ### Example Messages for Non-Recruiters (Specific Career Growth, Skills, and Achievements Focus):`;
 
-                                     **For Career Advice**:
-                                    1. "Hi [First Name], I’m inspired by your path from [previous role/field] to your current role at [company]. As I’m building my own expertise in [user skill, e.g., data analytics], any guidance you could share would be invaluable!"
-                                    2. "Hello [First Name], your growth in [industry] at [company] really resonates! I’m working on [specific project, e.g., a machine learning tool for e-commerce], and I’d love to hear about any lessons learned from your journey."
-                                    3. "Hey [First Name], I admire your strategic insights at [company]! As someone exploring [related user field, e.g., product strategy], I'd appreciate any advice you might have on progressing in this area."
-                                    4. "Hi [First Name], as someone also involved in [specific industry or field, e.g., SaaS product development], I’d love to learn how your time at [company] shaped your approach. Thank you for considering a quick chat!"
-                                    5. "Hello [First Name], your leadership journey at [company] is so inspiring. I’m currently enhancing my [user skill, e.g., project management] and would value any advice on navigating similar career steps!"
-
-                                    **For Networking Opportunity**:
-                                    1. "Hi [First Name], your recent work on [specific project or initiative, e.g., the AI-driven customer insights tool] at [company] caught my attention! I’d love to connect and stay in touch as I explore similar fields."
-                                    2. "Hello [First Name], your role in [specific field, e.g., cloud architecture] at [company] aligns with my own work in [related field, e.g., cloud-based applications]. Let’s connect to share insights and ideas!"
-                                    3. "Hey [First Name], I’m impressed by your contributions to [industry] at [company]. As someone involved in [specific user field or skill, e.g., UX research], I’d love to connect and hear more about your journey."
-                                    4. "Hi [First Name], your impact on [specific area, e.g., sustainable energy initiatives] at [company] is inspiring! As I work in [related field, e.g., environmental tech], I’d love to stay connected."
-                                    5. "Hello [First Name], your achievements in [specific skill or role, e.g., data security at enterprise scale] at [company] are amazing. Let’s connect—I’m interested in similar areas and would enjoy staying in touch!"
-
-                                    **For Job Inquiry**:
-                                    1. "Hi [First Name], your role at [company] sounds incredible! Could you share what qualities the team values most in a candidate? I’m exploring opportunities and would really appreciate your perspective."
-                                    2. "Hey [First Name], I’m interested in [specific department, e.g., product operations] at [company] and would love any insights into what sets successful candidates apart. Thank you for considering a quick chat!"
-                                    3. "Hi [First Name], I’m looking into roles at [company] in [specific industry, e.g., FinTech]. I’d appreciate any insights into the company culture and what you think defines a great candidate!"
-                                    4. "Hello [First Name], I noticed your experience in [specific field, e.g., cybersecurity] at [company]. As I explore similar roles, I’d love to know what makes an ideal candidate from your perspective."
-                                    5. "Hi [First Name], I’m researching positions in [industry] and would appreciate your perspective on [company]. Any insight on key qualities valued there would be fantastic. Thank you!"
-
-                                    **For Project Collaboration**:
-                                    1. "Hi [First Name], your project on [specific project, e.g., AI-driven customer segmentation] aligns with my recent work on [user project, e.g., predictive analytics in retail]. I’d love to connect and explore potential synergies!"
-                                    2. "Hello [First Name], your initiatives in [specific area, e.g., IoT for healthcare] at [company] align with my experience in [related user field, e.g., data integration]. Let’s connect to explore ways we might collaborate."
-                                    3. "Hey [First Name], I see a great connection between your work on [specific project, e.g., environmental data analysis] at [company] and my background in [related field, e.g., data science for sustainability]. Would love to discuss potential synergies!"
-                                    4. "Hi [First Name], your expertise in [specific field, e.g., blockchain solutions] at [company] is impressive! I’m working on [user project, e.g., blockchain security], and I think we might have collaboration potential."
-                                    5. "Hello [First Name], I’ve been exploring projects in [specific field, e.g., AI in education], and your work at [company] seems like a perfect fit. Let’s connect and discuss possible collaboration!"
-
-                                    **For Other Purposes**:
-                                    1. "Hey [First Name], your leadership in [recipient achievement, e.g., digital transformation] at [company] is inspiring! I’m working in [user work experience, e.g., change management], and would love to connect."
-                                    2. "Hi [First Name], your work at [company] in [specific field, e.g., sustainable tech] really caught my attention. I’m building up my skills in [related user skill, e.g., eco-friendly design] and would love to connect!"
-                                    3. "Hello [First Name], your achievements in [specific area, e.g., cloud security] at [company] are amazing! I’m involved in [user project or skill, e.g., SaaS security] and would enjoy staying connected."
-                                    4. "Hi [First Name], I saw your work at [company] in [specific field, e.g., logistics optimization], which aligns with my experience in [related user field, e.g., supply chain management]. Let’s connect!"
-                                    5. "Hey [First Name], your innovative approach at [company] in [specific field, e.g., machine learning for healthcare] is inspiring. I’m exploring similar areas and would love to connect and learn more!"
-                                \n\n`;
+                                    switch (userPurpose) {
+                                        case 'careerAdvice':
+                                            prompt += `
+                                            1. "Hi [First Name], I’m inspired by your path from [previous role/field] to your current role at [company]. As I’m building my own expertise in [user skill, e.g., data analytics], any guidance you could share would be invaluable!"
+                                            2. "Hello [First Name], your growth in [industry] at [company] really resonates! I’m working on [specific project, e.g., a machine learning tool for e-commerce], and I’d love to hear about any lessons learned from your journey."
+                                            3. "Hey [First Name], I admire your strategic insights at [company]! As someone exploring [related user field, e.g., product strategy], I'd appreciate any advice you might have on progressing in this area."
+                                            4. "Hi [First Name], as someone also involved in [specific industry or field, e.g., SaaS product development], I’d love to learn how your time at [company] shaped your approach. Thank you for considering a quick chat!"
+                                            5. "Hello [First Name], your leadership journey at [company] is so inspiring. I’m currently enhancing my [user skill, e.g., project management] and would value any advice on navigating similar career steps!"`;
+                                            break;
+                                        case 'networking':
+                                            prompt += `
+                                            1. "Hi [First Name], your recent work on [specific project or initiative, e.g., the AI-driven customer insights tool] at [company] caught my attention! I’d love to connect and stay in touch as I explore similar fields."
+                                            2. "Hello [First Name], your role in [specific field, e.g., cloud architecture] at [company] aligns with my own work in [related field, e.g., cloud-based applications]. Let’s connect to share insights and ideas!"
+                                            3. "Hey [First Name], I’m impressed by your contributions to [industry] at [company]. As someone involved in [specific user field or skill, e.g., UX research], I’d love to connect and hear more about your journey."
+                                            4. "Hi [First Name], your impact on [specific area, e.g., sustainable energy initiatives] at [company] is inspiring! As I work in [related field, e.g., environmental tech], I’d love to stay connected."
+                                            5. "Hello [First Name], your achievements in [specific skill or role, e.g., data security at enterprise scale] at [company] are amazing. Let’s connect—I’m interested in similar areas and would enjoy staying in touch!"`;
+                                            break;
+                                        case 'jobInquiry':
+                                            prompt += `
+                                            1. "Hi [First Name], your role at [company] sounds incredible! Could you share what qualities the team values most in a candidate? I’m exploring opportunities and would really appreciate your perspective."
+                                            2. "Hey [First Name], I’m interested in [specific department, e.g., product operations] at [company] and would love any insights into what sets successful candidates apart. Thank you for considering a quick chat!"
+                                            3. "Hi [First Name], I’m looking into roles at [company] in [specific industry, e.g., FinTech]. I’d appreciate any insights into the company culture and what you think defines a great candidate!"
+                                            4. "Hello [First Name], I noticed your experience in [specific field, e.g., cybersecurity] at [company]. As I explore similar roles, I’d love to know what makes an ideal candidate from your perspective."
+                                            5. "Hi [First Name], I’m researching positions in [industry] and would appreciate your perspective on [company]. Any insight on key qualities valued there would be fantastic. Thank you!"`;
+                                            break;
+                                        case 'projectCollaboration':
+                                            prompt += `
+                                            "Hi [First Name], I came across your work on [specific project, e.g., AI-driven customer segmentation], and it really resonates with some of my recent projects on [user project, e.g., predictive analytics]. Would you be open to connecting to see if there’s room for collaboration?"
+                                            "Hello [First Name], I’ve been following your work in [specific area, e.g., IoT for healthcare] at [company], and I think our experiences might line up in some interesting ways. Let’s connect and see where our projects could intersect!"
+                                            "Hey [First Name], I noticed your work on [specific project, e.g., environmental data analysis] at [company]. With my background in [related field, e.g., data science for sustainability], I’d love to chat about any ways we might team up."
+                                            "Hi [First Name], your focus on [specific field, e.g., blockchain solutions] is impressive! I’m working on [user project, e.g., blockchain security], and I’d be interested in seeing if there are ways for us to collaborate."
+                                            "Hello [First Name], I’ve been exploring projects in [specific field, e.g., AI in education], and the work you’re doing at [company] really caught my attention. Would you be open to connecting and chatting about possible collaboration?"
+                                            "Hi [First Name], I’m really interested in your work on [specific project, e.g., AI-driven customer segmentation]. I’ve been working on [user project, e.g., predictive analytics]—maybe we could find some areas to collaborate!"
+                                            "Hello [First Name], your focus on [specific area, e.g., IoT for healthcare] aligns with my background in [related user field, e.g., data integration]. I’d love to connect and explore if there’s potential for joint efforts."
+                                            "Hey [First Name], I see a strong overlap between your work on [specific project, e.g., environmental data analysis] and my experience in [related field, e.g., data science for sustainability]. Let’s connect to discuss potential collaboration!"
+                                            "Hi [First Name], I’m impressed by your expertise in [specific field, e.g., blockchain solutions] at [company]. I’m currently exploring similar projects, and it’d be great to connect and brainstorm some ideas together."
+                                            "Hello [First Name], as someone working in [specific field, e.g., AI in education], your projects at [company] stood out to me. I’d love to connect and see if there’s a way we can team up on something impactful!"
+                                            "Hi [First Name], I noticed you’re working on [specific project]. I’ve got a similar interest in [user’s project field], and it seems like we might have some shared goals. Would you be open to exploring possible collaboration?"
+                                            "Hey [First Name], I’ve been following your progress in [specific area, e.g., renewable energy solutions]. I’m working on a project in [related field], and I think our insights might complement each other well."
+                                            "Hello [First Name], your recent work in [specific field, e.g., healthcare data analytics] is inspiring. I’m tackling something similar on my end, and I think there’s room for us to collaborate in a meaningful way."`;
+                                            break;
+                                        default:
+                                            prompt += ` **For Other Purposes**:
+                                            1. "Hey [First Name], your leadership in [recipient achievement, e.g., digital transformation] at [company] is inspiring! I’m working in [user work experience, e.g., change management], and would love to connect."
+                                            2. "Hi [First Name], your work at [company] in [specific field, e.g., sustainable tech] really caught my attention. I’m building up my skills in [related user skill, e.g., eco-friendly design] and would love to connect!"
+                                            3. "Hello [First Name], your achievements in [specific area, e.g., cloud security] at [company] are amazing! I’m involved in [user project or skill, e.g., SaaS security] and would enjoy staying connected."
+                                            4. "Hi [First Name], I saw your work at [company] in [specific field, e.g., logistics optimization], which aligns with my experience in [related user field, e.g., supply chain management]. Let’s connect!"
+                                            5. "Hey [First Name], your innovative approach at [company] in [specific field, e.g., machine learning for healthcare] is inspiring. I’m exploring similar areas and would love to connect and learn more!"`;
+                                    }
 
                     if (experienceDetails.length > 0) {
                         // Construct the prompt using experience details

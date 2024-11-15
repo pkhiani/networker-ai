@@ -22,9 +22,9 @@ function getLinkedInExperience() {
   // Select all experience items within the experience section
   const experienceItems = experienceSection.querySelectorAll('.artdeco-list__item');
 
-  console.log(`Found ${experienceItems.length} experience items.`); // Log the number of experience items
+  // console.log(`Found ${experienceItems.length} experience items.`); // Log the number of experience items
 
-  const nameElement = document.querySelector("#ember1155 > h1"); // Select the <h1> within the <a>
+  const nameElement = document.querySelector('h1.text-heading-xlarge');
 
   experienceItems.forEach((item, index) => {
       if (index >= 10) return; // Stop after 10 items
@@ -38,7 +38,7 @@ function getLinkedInExperience() {
       const company = companyElement ? companyElement.innerText.trim() : 'Company not found';
       const description = descriptionElement ? descriptionElement.innerText.trim() : 'Description not found';
 
-      console.log(`Name: "${name}", Experience ${index + 1}: Title: "${title}", Company: "${company}", Description: "${description}"`); // Log extracted details
+      // console.log(`Name: "${name}", Experience ${index + 1}: Title: "${title}", Company: "${company}", Description: "${description}"`); // Log extracted details
 
       experiences.push({ name, title, company, description }); // Add extracted details to experiences array
   });
@@ -46,7 +46,7 @@ function getLinkedInExperience() {
   if (experiences.length === 0) {
       console.log("No experience details found.");
   } else {
-      console.log("Successfully extracted experience details:", experiences); // Log the array of experiences
+      // console.log("Successfully extracted experience details:", experiences); // Log the array of experiences
   }
 
   return experiences; // Return the array of experience details
@@ -56,7 +56,7 @@ function getLinkedInExperience() {
 function getProfileData(callback) {
     chrome.storage.local.get('profileData', (result) => {
         const savedData = result.profileData || {}; // Default to empty object if not found
-        console.log('Retrieved Profile Data:', savedData); // Log to verify retrieval
+        // console.log('Retrieved Profile Data:', savedData); // Log to verify retrieval
         callback(savedData); // Use a callback to return data
     });
 }
