@@ -188,7 +188,7 @@ document.getElementById('generateMessage').addEventListener('click', async funct
 
                     // Send the prompt to your backend server
                     try {
-                        const response = await fetch('https://message-tailor-api-production.up.railway.app/api/generate', {
+                        const response = await fetch('https://networker-api.up.railway.app/api/generate', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'
