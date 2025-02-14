@@ -1,25 +1,35 @@
 <html>
 <head>
     <title>LinkedIn Message Tailor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="popup.css">
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
     <div class="header-container">
-        <h2 style="margin: 0;">Networker.ai</h2>
+        <div class="left-section">
+            <h2 style="margin: 0;">Networker.ai</h2>
+            <div id="logo" class="logo-icon"></div>
+        </div>
 
-        <div id="logo" class="logo-icon"></div>
-    
-        <div id="profileIcon" title="Edit Your Profile" class="profile-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#047fc2" viewBox="0 0 24 24" class="profile-icon">
-                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.31 0-10 1.67-10 5v2h20v-2c0-3.33-6.69-5-10-5z"/>
-            </svg>
+        <div class="icons-container">
+            <div id="dashboardIcon" title="View Message History" class="dashboard-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#047fc2" viewBox="0 0 24 24">
+                    <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+                </svg>
+            </div>
+            
+            <div id="profileIcon" title="Edit Your Profile" class="profile-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#047fc2" viewBox="0 0 24 24">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.31 0-10 1.67-10 5v2h20v-2c0-3.33-6.69-5-10-5z"/>
+                </svg>
+            </div>
         </div>
     </div>
     
     <h4>Purpose</h4>
-    <select id="purposeDropdown">
+    <select id="purposeDropdown" aria-label="Connection Purpose">
         <option value="" disabled selected>Why do you want to connect?</option>
         <option value="careerAdvice">Seeking Career Advice</option>
         <option value="networking">Networking Opportunity</option>
