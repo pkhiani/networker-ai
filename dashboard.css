@@ -1,0 +1,123 @@
+/* Dashboard styles */
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+  }
+
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.messages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message-card {
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.message-header h3 {
+    margin: 0;
+    color: #1a73e8;
+}
+
+.timestamp {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.recipient-title {
+    color: #444;
+    margin: 5px 0;
+    font-style: italic;
+}
+
+.message-content {
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+.message-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.profile-link, .copy-btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.profile-link {
+    background: #1a73e8;
+    color: white;
+}
+
+.copy-btn {
+    background: #f1f3f4;
+    border: none;
+    color: #444;
+}
+
+.copy-btn:hover {
+    background: #e8eaed;
+}
+
+.no-messages {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+}
+
+/* Align logo and title */
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Ensure the logo is properly sized */
+.logo-icon {
+    width: 28px;
+    height: 28px;
+}
+
+/* ICONS SECTION */
+.icons-container {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adjust spacing between icons */
+}
+
+/* Message action buttons */
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}

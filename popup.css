@@ -12,16 +12,30 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+  padding: 0;
+  background-color: #c2c2c2;
 }
 
-.profile-icon {
-  margin-left: auto;
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .logo-icon {
-  content:url(icon-transparent.png);
-  width: 30px;
-  height: 30px;
+  content: url(icon-transparent.png);
+  width: 24px;
+  height: 24px;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-icon {
+  /* Remove margin-left: auto; */
 }
 
 h3 {
@@ -94,11 +108,13 @@ textarea {
   margin-top: 10px;
 }
 
-.copy-icon, .regenerate-icon, .profile-icon {
+.copy-icon, .regenerate-icon, .profile-icon, .dashboard-icon {
   cursor: pointer;
-  transition: fill 0.3s ease;
+  transition: all 0.2s ease;
+  padding: 4px;
+  border-radius: 4px;
 }
 
-.copy-icon:hover, .regenerate-icon:hover, .profile-icon:hover {
-  fill: #026296;
+.copy-icon:hover, .regenerate-icon:hover, .profile-icon:hover, .dashboard-icon:hover {
+  background-color: rgba(4, 127, 194, 0.1);
 }
