@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const messagesList = document.getElementById('messagesList');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const searchResults = document.getElementById('searchResults');
 
     function loadMessages() {
         chrome.storage.sync.get(['savedMessages'], function(result) {
@@ -66,6 +69,70 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Function to search LinkedIn prospects
+    async function searchProspects(query) {
+        try {
+            const response = await fetch('https://networker-api.up.railway.app/api/search-linkedin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ query })
+            });
+
+            const data = await response.json();
+            console.log('API Response:', data); // Log the response to check its structure
+            displaySearchResults(data.web.results);
+        } catch (error) {
+            searchResults.innerHTML = `<p class="error">Error: ${error.message}</p>`;
+        }
+    }
+
+    // Function to display search results
+    function displaySearchResults(results) {
+        searchResults.innerHTML = ''; // Clear previous results
+
+        // Check if results is an array
+        if (!Array.isArray(results)) {
+            searchResults.innerHTML = '<p class="error">Unexpected response format.</p>';
+            return;
+        }
+
+        if (results.length === 0) {
+            searchResults.innerHTML = '<p class="no-results">No prospects found.</p>';
+            return;
+        }
+
+        results.forEach(prospect => {
+            const resultCard = document.createElement('div');
+            resultCard.className = 'result-card';
+
+            // Access the title and URL from the web object
+            let title = prospect.title || 'No Title';
+            const url = prospect.url || '#';
+
+            // Remove "| LinkedIn" from the title
+            title = title.replace(/\s*\|\s*LinkedIn\s*$/, '');
+
+            resultCard.innerHTML = `
+                <h3>${title}</h3>
+            <div class="message-actions">
+                <a href="${url}" target="_blank" class="profile-link">View Profile</a>
+            </div>
+            `;
+
+            searchResults.appendChild(resultCard);
+        });
+    }
+
+    // Event listener for search button
+    searchButton.addEventListener('click', function() {
+        const query = searchInput.value.trim();
+        if (query) {
+            searchProspects(query);
+        }
+    });
 
     // Initial load
     loadMessages();
